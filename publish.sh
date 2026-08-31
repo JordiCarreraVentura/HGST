@@ -2,14 +2,14 @@
 set -e
 
 # Path definitions
-STAGING_DIR="../HGST-public
-POSTS_DIR="./content/posts"
+STAGING_DIR="../HGST-staging
+DRAFTS_DIR="./content/drafts"
 
 echo "1. Clearing old posts..."
-rm -rf "$POSTS_DIR"/*
+rm -rf "$DRAFTS_DIR"/*
 
 echo "2. Converting Obsidian syntax to standard Markdown..."
-obsidian-export "$STAGING_DIR" "$POSTS_DIR"
+obsidian-export "$STAGING_DIR" "$DRAFTS_DIR"
 
 echo "3. Staging changes in Git..."
 git add .
