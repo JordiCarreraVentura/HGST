@@ -1,3 +1,18 @@
 baseURL: "https://JordiCarreraVentura.github.io/HGST/"
 locale: en-us
 title: Jordi Carrera Ventura's Human-Generated Syntactic Trees blog
+theme: PaperMod
+
+params:
+  homeInfoParams:
+    Title: "Human-Generated Syntactic Trees"
+    Content: "Notes published from Obsidian via Hugo + PaperMod."
+  socialIcons:
+    - name: github
+      url: "https://github.com/JordiCarreraVentura/HGST"
+
+menu:
+  main:
+    - name: Posts
+      url: posts/
+      weight: 10
