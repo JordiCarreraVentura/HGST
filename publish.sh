@@ -5,6 +5,12 @@ set -e
 STAGING_DIR="../HGST-staging"
 POSTS_DIR="./content/posts"
 
+# Check the expected folders exist
+for input_folder in "$POSTS_DIR" "$STAGING_DIR" ;
+    do if [ ! -e "$input_folder" ] ; then echo "ERROR: input folder '$input_folder' not found."; fi;
+done;
+
+# Main
 echo "1. Clearing old exported posts (preserving _index.md)..."
 find "$POSTS_DIR" -maxdepth 1 -name '*.md' ! -name '_index.md' -delete
 
