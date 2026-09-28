@@ -1,9 +1,13 @@
 #!/bin/bash
 set -e
 
+# obsidian-export binary (Rust tool from zoni/obsidian-export)
+export EXPORT_BIN="$HOME/.cargo/bin/obsidian-export"
+if [ ! -x "$EXPORT_BIN" ] ; then echo "ERROR: obsidian-export not found at '$EXPORT_BIN'." ; exit 1 ; fi
+
 # Path definitions
-STAGING_DIR="../HGST-staging"
-POSTS_DIR="./content/posts"
+STAGING_DIR="/Users/jordi/Documents/Ideas/Consejos/Cacharrería/cámaras acorazadas de Obsidian/HGST-staging"
+POSTS_DIR="/Users/jordi/Documents/Ideas/Consejos/Cacharrería/cámaras acorazadas de Obsidian/HGST/content/posts"
 
 # Check the expected folders exist
 for input_folder in "$POSTS_DIR" "$STAGING_DIR" ;
@@ -12,10 +16,10 @@ done;
 
 # Main
 echo "1. Clearing old exported posts (preserving _index.md)..."
-find "$POSTS_DIR" -maxdepth 1 -name '*.md' ! -name '_index.md' -delete
+find "$POSTS_DIR" -maxdepth 1 -name '*.md' ! -name '_index.md' -delete ;
 
 echo "2. Converting Obsidian syntax to standard Markdown..."
-obsidian-export "$STAGING_DIR" "$POSTS_DIR"
+"$EXPORT_BIN" "$STAGING_DIR" "$POSTS_DIR" ;
 
 echo "3. Staging changes in Git..."
 git add .
